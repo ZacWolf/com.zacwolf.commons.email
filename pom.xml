@@ -1,0 +1,121 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.zacwolf</groupId>
+	<artifactId>com.zacwolf.commons</artifactId>
+	<version>2.0</version>
+	
+	<name>ZacWolf Commons</name>
+	<description>Common Utility classes I've developed over the years</description>
+	<url>https://github.com/ZacWolf/com.zacwolf.commons</url>
+	<organization>
+		<name>ZacWolf</name>
+		<url>https://www.zacwolf.com</url>
+	</organization>
+	<issueManagement>
+		<url>https://github.com/ZacWolf/com.zacwolf.commons/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:https://github.com/ZacWolf/com.zacwolf.commons.git</connection>
+		<url>https://github.com/ZacWolf/com.zacwolf.commons</url>
+		<tag>HEAD</tag>
+	</scm>
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<javax.activation.minversion>1.2.0</javax.activation.minversion>
+		
+		<plugin.maven-compiler-plugin.version>3.8.1</plugin.maven-compiler-plugin.version>
+		<plugin.maven-jar-plugin.version>3.2.0</plugin.maven-jar-plugin.version>
+		<plugin.maven-source-plugin.version>3.2.0</plugin.maven-source-plugin.version>
+		<plugin.maven-javadoc-plugin.version>3.2.0</plugin.maven-javadoc-plugin.version>
+		<plugin.maven-resources-plugin.version>3.1.0</plugin.maven-resources-plugin.version>
+	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/.gitignore</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.maven-compiler-plugin.version}</version>
+				<configuration>
+		          <!-- or whatever version you use -->
+		          <source>${maven.compiler.source}</source>
+		          <target>${maven.compiler.target}</target>
+		          <compilerArgument>-XDignore.symbol.file</compilerArgument>
+		        </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.maven-jar-plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*.secret</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.maven-source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-javadoc-plugin</artifactId>
+		        <version>${plugin.maven-javadoc-plugin.version}</version>
+		        <configuration>
+			      <source>${maven.compiler.source}</source>
+			      <doclint>none</doclint>
+			    </configuration>
+		        <executions>
+		            <execution>
+		                <id>attach-javadocs</id>
+		                <goals>
+		                    <goal>jar</goal>
+		                </goals>
+		                <phase>package</phase>
+		                <configuration>
+		                    <failOnError>false</failOnError>
+		                </configuration>
+		            </execution>
+		        </executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+
+	</dependencies>
+
+</project>
